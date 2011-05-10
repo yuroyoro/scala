@@ -769,8 +769,8 @@ trait Scanners extends ScannersCommon {
       def isDigit(c: Char) = java.lang.Character isDigit c
       val base1 = if (base < 10) 10 else base 
         // read 8,9's even if format is octal, produce a malformed number error afterwards.
-      while (digit2int(ch, base1) >= 0) {
-        putChar(ch)
+      while (digit2int(ch, base1) >= 0 || ch == '_') {
+        if( ch != '_') putChar(ch)
         nextChar()
       }
       token = INTLIT
